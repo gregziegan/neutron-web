@@ -1,0 +1,78 @@
+{
+  "name": "neutron-web",
+  "version": "0.1.0",
+  "description": "Front-End for Neutron",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thebritican/neutron-web"
+  },
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile": "webpack",
+    "start": "npm run dev",
+    "dev": "node --harmony bin/webpack-dev-server",
+    "dev:nw": "npm run dev -- --nw",
+    "dev:no-debug": "npm run dev -- --no_debug",
+    "test": "jest",
+    "deploy": "npm run test:unit && npm run compile",
+    "update-schema": "babel-node ./scripts/updateSchema.js"
+  },
+  "author": "Greg Ziegan <greg.ziegan@gmail.com> (http://gregziegan.com)",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "babel-relay-plugin": "^0.4.1",
+    "graphql": "^0.4.4",
+    "graphql-relay": "^0.3.2",
+    "history": "^1.9.0",
+    "invariant": "^2.1.0",
+    "material-ui": "^0.13.0",
+    "moment": "^2.10.6",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-inline-grid": "^0.5.3",
+    "react-relay": "^0.5.0",
+    "react-router": "^1.0.0",
+    "react-router-relay": "^0.8.0",
+    "react-tap-event-plugin": "^0.2.1",
+    "yargs": "^3.18.0"
+  },
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "autoprefixer-loader": "^2.0.0",
+    "babel-eslint": "^4.1.1",
+    "babel-jest": "^5.3.0",
+    "babel-loader": "^5.0.0",
+    "babel-plugin-react-transform": "^1.0.2",
+    "babel-runtime": "^5.8.20",
+    "css-loader": "^0.17.0",
+    "eslint": "^1.0.0",
+    "eslint-config-airbnb": "^0.1.0",
+    "eslint-loader": "^1.0.0",
+    "eslint-plugin-react": "^3.3.1",
+    "extract-text-webpack-plugin": "^0.8.0",
+    "html-webpack-plugin": "^1.6.1",
+    "jest-cli": "^0.7.1",
+    "mocha": "^2.2.5",
+    "node-sass": "^3.2.0",
+    "nodemon": "^1.4.1",
+    "phantomjs": "^1.9.17",
+    "phantomjs-polyfill": "0.0.1",
+    "react-addons-test-utils": "^0.14.2",
+    "react-transform-catch-errors": "^0.1.2",
+    "react-transform-hmr": "^1.0.0",
+    "redbox-react": "^1.0.4",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ]
+  }
+}
