@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Relay from 'react-relay';
 
+import ArticleCard from 'components/ArticleCard';
+
 class TimelineView extends Component {
   static propTypes = {
     viewer: PropTypes.object.isRequired
@@ -8,9 +10,7 @@ class TimelineView extends Component {
 
   renderArticle(article) {
     return (
-      <div>
-        <h2>{article.title}</h2>
-      </div>
+      <ArticleCard title={article.title} />
     );
   }
 
