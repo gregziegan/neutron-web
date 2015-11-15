@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import Relay from 'react-relay';
+import { Grid, Row, Cell } from 'react-inline-grid';
 
 import ArticleCard from 'components/ArticleCard';
-import { FlatButton } from 'material-ui';
 
 class TimelineView extends Component {
   static propTypes = {
-    viewer: PropTypes.object.isRequired
+    viewer: PropTypes.object.isRequired,
+    children: PropTypes.element
   }
 
   renderArticle(article) {
@@ -22,13 +23,17 @@ class TimelineView extends Component {
     const { viewer } = this.props;
     return (
       <div>
-        <ul>
-          {viewer.allArticles.edges.map(edge =>
-            <li key={edge.node.id}>{this.renderArticle(edge.node)}</li>
-          )}
-        </ul>
+        <Grid>
+          <Row is="between">
+            <Cell is="6 tablet-4 phone-2">
+              {this.renderArticle(viewer.allArticles.edges[0].node)}
+            </Cell>
+            <Cell is="6 tablet-4 phone-2">
+              {this.renderArticle(viewer.allArticles.edges[4].node)}
+            </Cell>
+          </Row>
+        </Grid>
         {this.props.children}
-        <FlatButton label="Primary" />
       </div>
     );
   }
