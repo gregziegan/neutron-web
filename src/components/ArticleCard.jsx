@@ -7,12 +7,14 @@ const ArticleCard = (props) => {
       <CardHeader
         title={props.title}
         avatar={props.avatar}
+        actAsExpander
+        showExpandableButton
         />
+      <CardText>
+        {props.preview}
+      </CardText>
       <CardText expandable>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        {props.content}
       </CardText>
     </Card>
   );
@@ -20,7 +22,9 @@ const ArticleCard = (props) => {
 
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
-  avatar: PropTypes.string
+  avatar: PropTypes.string,
+  preview: PropTypes.string,
+  content: PropTypes.string
 };
 
 export default ArticleCard;

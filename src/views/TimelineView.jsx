@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Relay from 'react-relay';
 
 import ArticleCard from 'components/ArticleCard';
+import { FlatButton } from 'material-ui';
 
 class TimelineView extends Component {
   static propTypes = {
@@ -10,7 +11,10 @@ class TimelineView extends Component {
 
   renderArticle(article) {
     return (
-      <ArticleCard title={article.title} />
+      <ArticleCard
+        title={article.title}
+        preview={article.content.substring(0, 200)}
+        content={article.content}/>
     );
   }
 
@@ -24,6 +28,7 @@ class TimelineView extends Component {
           )}
         </ul>
         {this.props.children}
+        <FlatButton label="Primary" />
       </div>
     );
   }
@@ -33,11 +38,12 @@ export default Relay.createContainer(TimelineView, {
   fragments: {
     viewer: () => Relay.QL`
       fragment on Query {
-        allArticles(first: 5) {
+        allArticles(first: 8) {
           edges {
             node {
               id
               title
+              content
             }
           }
         }
