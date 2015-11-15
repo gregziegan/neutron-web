@@ -1,30 +1,38 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui';
 
-const ArticleCard = (props) => {
-  return (
-    <Card>
-      <CardHeader
-        title={props.title}
-        avatar={props.avatar}
-        actAsExpander
-        showExpandableButton
-        />
-      <CardText>
-        {props.preview}
-      </CardText>
-      <CardText expandable>
-        {props.content}
-      </CardText>
-    </Card>
-  );
-};
+export default class ArticleCard extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    preview: PropTypes.string,
+    content: PropTypes.string
+  };
 
-ArticleCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  avatar: PropTypes.string,
-  preview: PropTypes.string,
-  content: PropTypes.string
-};
+  constructor(props) {
+    super(props);
+    this.state = { showPreview: true };
+  }
 
-export default ArticleCard;
+  _handleExpandChange = () => {
+    this.setState({ showPreview: !this.state.showPreview });
+  }
+
+  render() {
+    const { title, avatar, preview, content } = this.props;
+    return (
+      <Card onExpandChange={this._handleExpandChange}>
+        <CardHeader
+          title={title}
+          avatar={avatar}
+          actAsExpander
+          showExpandableButton
+          />
+        { this.state.showPreview ? <CardText>{preview}</CardText> : ''}
+        <CardText expandable>
+          {content}
+        </CardText>
+      </Card>
+    );
+  }
+}
