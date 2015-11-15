@@ -29,9 +29,7 @@ export default class ArticleCard extends Component {
           showExpandableButton
           />
         { this.state.showPreview ? <CardText>{preview}</CardText> : ''}
-        <CardText expandable>
-          {content}
-        </CardText>
+        {content.split('\n').map(paragraph => <CardText expandable>{paragraph}</CardText>)}
       </Card>
     );
   }
